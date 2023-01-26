@@ -1,4 +1,4 @@
-package server
+package internal
 
 import (
 	"context"
@@ -15,24 +15,23 @@ type grpcServer struct {
 }
 
 func (s *grpcServer) Send(ctx context.Context, req *comm.MessageRequest) (*comm.MessageResponse, error) {
-	response := ""
+	var response *comm.MessageResponse
 	var err error
 	if req != nil {
-		log.Printf("message %s received, payload: %s\n", req.ID, req.Payload)
-		response = fmt.Sprintf("message %s received successfully", req.ID)
+		log.Printf("message %s received, payload: %s\n", req.Id, req.Payload)
+		response = &comm.MessageResponse{Status: fmt.Sprintf("message %s received successfully", req.Id)}
 	} else {
-		response = "request cannot be nil"
-		err = errors.New(response)
+		err = errors.New("request cannot be nil")
 	}
 
 	return response, err
 }
 
-func NewServer() *grpcServer {
+func NewServer() *grpc.Server {
 	gsrv := grpc.NewServer()
 	srv := grpcServer{}
 
 	comm.RegisterCommunicatorServer(gsrv, &srv)
 
-	return &gsrv
+	return gsrv
 }

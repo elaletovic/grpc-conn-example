@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package communicator;
 
-option go_package = "github.com/elaletovic/grpc-conn-example/protos/communicator";
+option go_package = "github.com/elaletovic/grpc-conn-example/communicator";
 
 service Communicator {
   rpc Send(MessageRequest) returns (MessageResponse) {}

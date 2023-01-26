@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.21.12
-// source: protos/communicator.proto
+// source: communicator/communicator.proto
 
 package communicator
 
@@ -101,5 +101,5 @@ var Communicator_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "protos/communicator.proto",
+	Metadata: "communicator/communicator.proto",
 }
