@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package communicator;
+
+option go_package = "github.com/elaletovic/grpc-conn-example/protos/communicator";
+
+service Communicator {
+  rpc Send(MessageRequest) returns (MessageResponse) {}
+}
+
+message MessageRequest {
+  string id = 1;
+  string payload = 2;
+}
+
+message MessageResponse {
+  string status = 1;
+}
